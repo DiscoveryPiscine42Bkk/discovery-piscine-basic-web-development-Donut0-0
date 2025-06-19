@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>It's over 9000</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, select, button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="number" id="left" placeholder="Left value" min="0" />
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+    <option value="%">%</option>
+  </select>
+  <input type="number" id="right" placeholder="Right value" min="0" />
+  <button onclick="calculate()">Try me!</button>
+
+  <script>
+    function calculate() {
+      const left = document.getElementById("left").value;
+      const right = document.getElementById("right").value;
+      const op = document.getElementById("operator").value;
+
+      const l = parseInt(left, 10);
+      const r = parseInt(right, 10);
+
+      if (isNaN(l) || isNaN(r) || l < 0 || r < 0) {
+        alert("Error :(");
+        return;
+      }
+
+      if ((op === '/' || op === '%') && r === 0) {
+        alert("It's over 9000!");
+        console.log("It's over 9000!");
+        return;
+      }
+
+      let result;
+      switch(op) {
+        case '+': result = l + r; break;
+        case '-': result = l - r; break;
+        case '*': result = l * r; break;
+        case '/': result = l / r; break;
+        case '%': result = l % r; break;
+      }
+
+      alert("Result: " + result);
+      console.log("Result: " + result);
+    }
+
+    setInterval(() => {
+      alert("Please, use me...");
+    }, 30000);
+  </script>
+
+</body>
+</html>
